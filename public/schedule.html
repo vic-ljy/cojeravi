@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Schedule</title>
+        <!-- Bootstrap 3 -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <!-- FIREBASE INITIAL SETUP -->
+        <script src="/__/firebase/8.2.3/firebase-app.js"></script>
+        <script src="/__/firebase/8.2.3/firebase-auth.js"></script>
+        <script src="/__/firebase/8.2.3/firebase-database.js"></script>
+        <script src="/__/firebase/8.2.3/firebase-analytics.js"></script>
+        <script src="/__/firebase/init.js?useEmulator=true"></script>
+
+        <style>
+            body {
+                background-color: #000000;
+            }
+        </style>
+    </head>
+    <body>
+      <!--Table with times-->
+      <center>
+        <div class="container-fluid">
+          <div class="table-responsive" id=schedule>
+            <table style="background-color: black">
+              <thead id="schedHead">
+
+                <div hidden id = "plusButton">
+                  <button onclick="addTimeslot()" type = "button" class = "btn btn-danger"></button>
+                </div>
+
+              </thead>
+              <tbody id="schedBody">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </center>
+        
+          
+        
+      <!-- SCRIPTS -->
+    <script>
+        var database = firebase.database();
+        var rootRef = database.ref(); //the root node
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                //alert("signed in");
+                database.ref('profiles/'+user.uid+'/groupID').once('value').then(function(snapshot) {
+                    if (snapshot.val()== "" || !(snapshot.exists())) {
+                        window.location.href = "groups.html";
+                    }
+                });
+            } else {
+                //alert("not signed in");
+                window.location.href = "logIn.html";
+            }
+        });
+      </script>
+    <script src="js/authentication.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/table.js"></script>
+    </body>
+</html>

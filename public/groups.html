@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- FIREBASE INITIAL SETUP -->
+    <script src="/__/firebase/8.2.3/firebase-app.js"></script>
+    <script src="/__/firebase/8.2.3/firebase-auth.js"></script>
+    <script src="/__/firebase/8.2.3/firebase-database.js"></script>
+    <script src="/__/firebase/8.2.3/firebase-analytics.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
+</head>
+<body>
+    <div class="container">
+        <button id = "createGroup" onclick = "createGroup()" type = "button" class = "btn btn-primary">Create Room</button>
+        <h3>or</h3>
+        <input id = "joinGroup"  type="text" class="form-control" placeholder="Enter room code" id="roomCodeInput">
+        <button type = "button" onclick = "joinGroup()" class = "btn btn-danger">Join Room</button>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        var database = firebase.database();
+        var rootRef = database.ref(); //the root node
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                //alert("signed in");
+                database.ref('profiles/'+user.uid+'/groupID').once('value').then(function(snapshot) {
+                    if (snapshot.val()!= "" && (snapshot.exists())) {
+                        window.location.href = "schedule.html";
+                    }
+                });
+            } else {
+                //alert("not signed in");
+                window.location.href = "logIn.html";
+            }
+        });
+      </script>
+    <script src="js/authentication.js"></script>
+    <script src="js/database.js"></script>
+</body>
+</html>

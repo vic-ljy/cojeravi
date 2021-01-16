@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>M@tcha</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- FIREBASE INITIAL SETUP -->
+    <script src="/__/firebase/8.2.3/firebase-app.js"></script>
+    <script src="/__/firebase/8.2.3/firebase-auth.js"></script>
+    <script src="/__/firebase/8.2.3/firebase-database.js"></script>
+    <script src="/__/firebase/8.2.3/firebase-analytics.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style>
+      #whenSignedOut, #whenSignedIn {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href = "schedule.html"><button>lollolo</button></a>
+    <div hidden id = "whenSignedOut">
+      <a href = "signUp.html"><button type = "button" class = "btn btn-primary">Sign Up</button></a>
+      <a href = "logIn.html"><button type = "button" class = "btn">Log in</button></a>
+    </div>
+    <div hidden id = "whenSignedIn">
+      <button onclick="signOut()" type = "button">Sign out</button>
+    </div>
+    
+    
+    <!-- SCRIPTS -->
+    <script>
+      var database = firebase.database();
+      var rootRef = database.ref(); //the root node
+
+      // show the right buttons (signup/in vs signout)
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            //alert("signed in");
+            document.getElementById('whenSignedOut').hidden="true";
+            document.getElementById('whenSignedIn').removeAttribute('hidden');
+        } else {
+            //alert("not signed in");
+            document.getElementById('whenSignedOut').removeAttribute('hidden');
+            document.getElementById('whenSignedIn').hidden="true";
+        }
+      })
+      
+    </script>
+    <!--<script src="script/authentication.js"></script>>-->
+    <script src="js/authentication.js"></script>
+    <script src="js/database.js"></script>
+    
+  </body>
+</html>
