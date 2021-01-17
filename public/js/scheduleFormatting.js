@@ -25,9 +25,7 @@ firebase.auth().onAuthStateChanged((user) => {
             document.getElementById("gc").innerHTML = roomID.toUpperCase();
         });
         //code here runs before code in .once()
-    } else {
-        alert("not signed in");
-    }
+    } 
 })
 
 function twoDigits(input) {
