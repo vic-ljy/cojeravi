@@ -121,6 +121,7 @@ for(var i = 0; i < 19; i++){
 
             addUser.id = 'b' + cell.id;
 
+            // JUNYI
             addUser.onclick = function() {
               joinSession(this.id); //bday#hr##
               this.disabled = true;
@@ -130,7 +131,8 @@ for(var i = 0; i < 19; i++){
               var m2 = 'm2' + this.id;
               if (document.getElementById(m1).className == "noneUser") {
                 document.getElementById(m1).style.opacity = "1";
-                document.getElementById(m1).style.zIndex = "1";
+                document.getElementById(m1).style.transform = "translateX(40px)";
+                document.getElementById(m1).style.marginBottom = "20px";
               } else if (document.getElementById(m2).className == "noneUser") {
                 document.getElementById(m2).style.opacity = "1";
               }

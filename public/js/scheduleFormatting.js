@@ -218,7 +218,7 @@ setTimeout(function() {
                                 document.getElementById('b' + timeslotId).className = "delete";
                             } else {
                                 m1.className = "schedUnpaired";
-                                m2 = userID;
+                                m2 = document.getElementById("m2b" + timeslotId);
                                 m2.className = "noneUser";
                                 m2.innerHTML = letter;
                                 m2.style.backgroundColor = userColour;
@@ -240,11 +240,12 @@ setTimeout(function() {
                                 m2.className = "schedPaired";
                             }
                             m1.style.float = "left";
-                            m1.style.marginLeft = "50px";
+                 
                             m2.style.float = "right";
-                            m1.style.marginRight = "50px";
+
                             m1.style.backgroundColor = memberList[0][1];
                             m2.style.backgroundColor = memberList[1][1];
+    
                             m1.innerHTML = name1_letter;
                             m2.innerHTML = name2_letter;
                             cell.style.backgroundColor = '#292d30';

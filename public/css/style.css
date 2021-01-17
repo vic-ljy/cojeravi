@@ -12,6 +12,7 @@
 }
 
 .noneUser {
+  margin: auto;
   border: 2px solid white;
   height: 56px;
   width: 56px;
@@ -22,11 +23,8 @@
   font-size: 35px;
   vertical-align: middle;
   border-radius: 50%;
-
+  transition: 0.5s;
   position: absolute;
-  margin-left: 64px;
-  margin-top: 16px;
-  margin-bottom: 20px;
   opacity: 0;
 }
 
@@ -43,10 +41,8 @@
   border-radius: 50%;
 
   position: absolute;
-  margin-left: 64px;
-  margin-top: 16px;
-  margin-bottom: 20px;
   transition: 0.5s;
+  transform: translateX(40px);
 }
 
 .schedPaired {
@@ -76,10 +72,9 @@
   vertical-align: middle;
   border-radius: 50%;
 
-  position: relative;
-  margin-left: 64px;
-  margin-top: 16px;
-  margin-bottom: 20px;
+  position: absolute;
+  transform: translateX(40px);
+  margin-bottom: 10px;
 }
 
 .schedPairedUser {
@@ -161,13 +156,14 @@
 .slotCell {
   text-align: center;
   vertical-align: middle;
-  padding: 5px;
+  padding: 30px;
   background-color: #32363b;
   border-left: 6px solid #232629;
   transition: all 0.3s ease-in-out;
   height: 100px;
   position: relative;
   box-shadow: 0 10px 10px -2px #232629;
+  padding-bottom: 30px;
 }
 
 .slotLast {
@@ -183,7 +179,7 @@
 }
 /*Case 2*/
 .slotCell:hover .schedUnpaired {
-  transform: translateX(-40px);
+  transform: translateX(-3px);
 }
 
 /*case 0*/

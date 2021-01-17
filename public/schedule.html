@@ -25,7 +25,7 @@
               background-color: #232629;
           }
         
-          h1 {
+          /*h1 {
             font-size: 3vw;
           }
 
@@ -39,7 +39,7 @@
 
           h4 {
             font-size: 1.25vw;
-          }
+          }*/
 
           #schedule-head{
             height: 20%;
@@ -146,15 +146,15 @@
           #cover {position: fixed; height: 100%; width: 100%; top:0; left: 0; text-align: center; background: #232629; z-index:9999; color: white;}
         </style>
     </head>
-    <body>
-      <div id="cover"><h3 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Exo', sans-serif;">M<span style="color: #bdf29d">@</span>tcha</h3></div>
+    <body style="min-width: 1300px;">
+      
       <!--Table with times-->
       <center>
         <div class="container-fluid">
           <div class="container" id="schedule-head">
             <div class="row">
               <div id="logo" class="col-sm-3">
-                <a href="index.html"><div><h3 id="logoHeading">M<span style="color: #bdf29d">@</span>tcha</h3></div></a>
+                <a href="index.html"><div><img src="opo/logo.png" width="40px"></div></a>
               </div>
               <div class="col-sm-6">
                 <button type="button" class="btn down-button" data-toggle="modal" data-target="#groupModal"><i class="fas fa-angle-down"></i></button>
@@ -203,17 +203,7 @@
       
       <!-- SCRIPTS -->
 
-    <script>
-      $(window).on('load', function() {
-        console.log('check 1');
-        setTimeout(function(){
-          $('#cover').fadeOut(1000);
-          console.log('check 2');
-        }, 3000);
-      });
-
-      
-    </script>
+   
     <script>
         var database = firebase.database();
         var rootRef = database.ref(); //the root node
