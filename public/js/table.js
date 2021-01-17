@@ -3,6 +3,9 @@
 var database = firebase.database();
 var rootRef = database.ref(); //the root node
 
+//importing from database addTimeslot function
+//import {addTimeslot} from 'js/database.js';
+
 var schedTable = document.getElementById("schedule");
 var schedHead = document.getElementById("schedHead");
 var schedBody = document.getElementById("schedBody");
@@ -15,12 +18,23 @@ var date = d.getDate();
 var n = d.getDay();
 var days = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT', 'SUN', 'MON', 'TUES', 'WED'];
 
+var userID;
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        userID = user.uid;
+        //alert("signed in; userID is " + userID);
+    } else {
+        //alert("not signed in");
+        window.location.href = "logIn.html";
+    }
+})
+
 
 for(var i = 0; i < 19; i++){
     var row = document.createElement("tr");
     row.id = ("rowId" + i.toString());
 
-    for(var j = 0; j < 6; j++){
+  for(var j = 0; j < 6; j++){
     // time slots
     if(j == 0 && i > 1 ){
         var timing = document.createElement("td");
@@ -61,40 +75,45 @@ for(var i = 0; i < 19; i++){
         } else if(j!=0){
         //All other columns (except time column)
             var cell = document.createElement("td");
-            var cellDiv = document.createElement("div");
-
-            cellDiv.className = "slotDiv";
-            cell.appendChild(cellDiv);
 
             cell.className = "slotCell";
 
             if(j == 1){
-              cell.className = "slotToday";
+              cell.className = "slotCell slotToday";
+              cell.style.borderLeft = "6px solid #bdf29d";
               if(i == 18){
-                cell.className = "slotLast slotToday";
+                cell.className = "slotCell slotToday slotLast";
               }
             }
-            cell.id = ("day" + j.toString() + "hr" + String(i+5)); //i = 1 is at 7am; eg. day1hr12
-            //TODO format 7am to 07
 
-            row.appendChild(cell);
-        } else {
-            //empty cells top left
-            var cell = document.createElement("td");
+            var hour = String(i+5);
+             
+            if (hour.length == 1) hour = "0" + hour; // I dunno if this works it should tho
+        
+            cell.id = ("day" + j + "hr" + hour); //i = 1 is at 7am; eg. day1hr12
+
+            //TODO format 7am to 07
+            
+
+            var addUser = document.createElement("button");
+            addUser.className = "addUserBtn";
+            addUser.id = cell.id;
+
+            addUser.onclick = function(){
+              joinSession(this.id);
+              alert(this.id);
+            }
+            
             cell.className="slotEmpty";
 
             if (i == 1) {
               cell.className = "slotEmpty beforeTime";
-            } else if (i == 0) {
-              var butt = document.createElement("button");
-              butt.innerHTML = "For Connie";
-              cell.appendChild(butt);
-            }
+            } 
             row.appendChild(cell);
         }
     }
 
-    }
+  }
     if(i == 0 || i == 1){
       schedHead.appendChild(row);
     } else {

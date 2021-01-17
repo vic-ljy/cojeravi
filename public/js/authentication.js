@@ -66,18 +66,18 @@ function signUpGoogle() {
 }
 
 function logInEmailPass() {
-    //alert('checkpoint 0');
+    alert('checkpoint 0');
     let email = document.getElementById('logInEmail').value;
     let password = document.getElementById('logInPassword').value;
-    //alert("checkpoint 1");
+    alert("checkpoint 1");
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
             //let profilesRef = rootRef.child("profiles");
             let currentUser = firebase.auth().currentUser;
             let userID = currentUser.uid;
-            //alert('checkpoint 2');
+            alert('checkpoint 2');
             database.ref('profiles/'+userID+'/groupID').once('value').then(function(snapshot) {
-                //alert('checkpoint 3');
+                alert('checkpoint 3');
                 if (snapshot.val()== "") {
                     window.location.href = "groups.html";
                 } else {
