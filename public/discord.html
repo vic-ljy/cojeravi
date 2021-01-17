@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>M@tcha | Discord Auth</title>
+    <link rel="icon" href="opo/logo.svg">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -93,7 +94,7 @@
             list-style: none;
             width: 20px;
             height: 20px;
-            background: rgba(190, 242, 157, 0.2);
+            background: rgba(140, 159, 248, 0.2);
             opacity: 0;
             animation: animate 25s linear infinite;
             bottom: 0px;
@@ -240,30 +241,25 @@
         margin-bottom: 40px;
         }
 
-        #loginBtn {
+        #discordBtn {
         background-color: white;
         color: #232629;
         transition: 0.3s;
         }
 
-        #loginBtn:hover {
-        background-color: #bdf29d;
-        border-color: #bdf29d;
-        }
-
-        #loginGoogleBtn {
-        background-color: rgba(255, 0, 0, 0);
-        color: white;
-        transition: 0.3s;
-        }
-
-        #loginGoogleBtn:hover {
-        color: #bdf29d;
-        border-color: #bdf29d;
+        #discordBtn:hover {
+        background-color: #8ca0f8;
+        border-color: #8ca0f8;
         }
 
         .col-sm-12 {
         text-align: center;
+        }
+
+        #discordLogo {
+            border-radius: 100%;
+            transition: 0.3s;
+            box-shadow: 0 0 8px 0 rgba(140, 160, 248, 0.8);
         }
     </style>
 </head>
@@ -303,19 +299,17 @@
         <div class="context">
             <div id="signUpContainer" class="container">
               <div id="signUpPanel">
-                <h2>Discord</h2>
-                <hr>
+                <img src="opo/discord-icon.webp" width="20%" style="margin-bottom: 5%" id="discordLogo">
                 <form class="form">
 
                   <div class="form-row" id="rowLessMargin">
                     <div class="col-sm-12">
-                      <button id="loginBtn" onclick="logInEmailPass(); return false;" type="submit" class="btn">Link Discord Account</button>
+                      <button id="discordBtn" onclick="" href="https://discord.com/api/oauth2/authorize?client_id=800235919290400768&redirect_uri=https%3A%2F%2Fcojeravi.web.app%2Fgroups.html&response_type=code&scope=identify" class="btn">Link Discord Account</button><!--type="submit" -->
                     </div>
                   </div>
                 </form>
               </div>
             </div>
-            <a href="signUp.html" style="color:#bdf29d">Don't have an account yet? Sign up here!</a>
         </div>
       </div>
   
@@ -339,9 +333,9 @@
                 //alert("signed in");
                 database.ref('profiles/'+user.uid+'/groupID').once('value').then(function(snapshot) {
                     if (snapshot.val()== "" || !(snapshot.exists())) {
-                        window.location.href = "groups.html";
+                        //window.location.href = "groups.html";
                     } else {
-                        window.location.href = "schedule.html";
+                        //window.location.href = "schedule.html";
                     }
                 });
             } else {
@@ -351,5 +345,7 @@
       </script>
     <script src="js/authentication.js"></script>
     <script src="js/database.js"></script>
+    <!--<script src = "js/discordbot.js"></script>-->
 </body>
 </html>
+

@@ -31,6 +31,7 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 })
 
+/*
 function reformatTime(time) {
   console.log('memberList: '+memberList); //[[m1ID, m1COL],[m2ID, m2COL]]
   console.log('time: '+time); //hhddmmyy
@@ -44,7 +45,7 @@ function reformatTime(time) {
   if ((yy == year) && (mm == month) && (dd >= date && dd <= date + 5)) {
 
   }
-}
+}*/
 
 for(var i = 0; i < 19; i++){
   var row = document.createElement("tr");
@@ -107,10 +108,12 @@ for(var i = 0; i < 19; i++){
             
             //User icons
             var user1 = document.createElement("div");
-            user1.id = "m1b";
+            user1.id = "m1b" + cell.id;
 
             var user2 = document.createElement("div");
-            user2.id = "m2b";
+            user2.id = "m2b" + cell.id;
+            console.log('m2b'+ cell.id);
+            
 
               //Add user button
             var addUser = document.createElement("button");
@@ -119,11 +122,17 @@ for(var i = 0; i < 19; i++){
             addUser.id = 'b' + cell.id;
 
             addUser.onclick = function() {
-              joinSession(this.id);
-              if (user1.className == "noneUser") {
-                var m1 = 'm1' + this.id;
+              joinSession(this.id); //bday#hr##
+              this.disabled = true;
+              this.className = "delete";
+              
+              var m1 = 'm1' + this.id;
+              var m2 = 'm2' + this.id;
+              if (document.getElementById(m1).className == "noneUser") {
                 document.getElementById(m1).style.opacity = "1";
-                this.style.zIndex = "-1";
+                document.getElementById(m1).style.zIndex = "1";
+              } else if (document.getElementById(m2).className == "noneUser") {
+                document.getElementById(m2).style.opacity = "1";
               }
             };
             cell.appendChild(user1);

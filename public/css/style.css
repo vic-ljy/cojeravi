@@ -11,47 +11,6 @@
   padding-bottom: 50px;
 }
 
-/* User Icons */
-.schedUnpaired {
-  height: 56px;
-  width: 56px;
-  font-family: Noto Sans, sans-serif;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 35px;
-  vertical-align: middle;
-  border-radius: 50%;
-}
-.schedPaired {
-  height: 56px;
-  width: 56px;
-  font-family: Noto Sans, sans-serif;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  padding-bottom: 10px;
-  font-size: 35px;
-  vertical-align: middle;
-  border-radius: 50%;
-  opacity: 0.5;
-}
-
-.schedUnpairedUser {
-  height: 56px;
-  width: 56px;
-  font-family: Noto Sans, sans-serif;
-  border: 2px solid white;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 35px;
-  vertical-align: middle;
-  border-radius: 50%;
-}
-
 .noneUser {
   border: 2px solid white;
   height: 56px;
@@ -71,6 +30,58 @@
   opacity: 0;
 }
 
+/* User Icons */
+.schedUnpaired {
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  position: absolute;
+  margin-left: 64px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+
+.schedPaired {
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-bottom: 10px;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.schedUnpairedUser {
+  border: 2px solid white;
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  position: relative;
+  margin-left: 64px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
 .schedPairedUser {
   border: 2px solid white;
   height: 56px;
@@ -85,6 +96,7 @@
   border-radius: 50%;
   opacity: 0.5;
 }
+
 
 /* titles */
 
@@ -152,8 +164,10 @@
   padding: 5px;
   background-color: #32363b;
   border-left: 6px solid #232629;
-  box-shadow: 0 10px 10px -2px #232629;
   transition: all 0.3s ease-in-out;
+  height: 100px;
+  position: relative;
+  box-shadow: 0 10px 10px -2px #232629;
 }
 
 .slotLast {
@@ -167,6 +181,11 @@
   transform: scale(1.03, 1.03);
   box-shadow: 2px 2px 25px 5px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0,0,0,0.2);
 }
+/*Case 2*/
+.slotCell:hover .schedUnpaired {
+  transform: translateX(-40px);
+}
+
 /*case 0*/
 .slotCell:hover .addUserBtn {
   opacity: 1;
@@ -184,14 +203,15 @@
   color: #32363b;
   text-align: center;
   text-decoration: none;
-  padding-bottom: 10px;
   font-size: 35px;
   vertical-align: middle;
   border-radius: 50%;
-  margin-bottom: 20px;
-  margin-top: -14px; /*to fix*/
+  top: 0;
+  left: 0;
+  margin: 0%;
 
   overflow: hidden;
+  
   position: relative;
   display: inline-block;
   transition: all 0.25s ease;
@@ -225,4 +245,13 @@
 
 .addUserBtn:active, .addUserBtn:focus {
   border: none;
+}
+.addUserBtn:disabled {
+  opacity: 0;
+  cursor: not-allowed;
+}
+
+.delete {
+  display: none;
+  z-index: -1;
 }
