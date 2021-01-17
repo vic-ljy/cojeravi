@@ -359,9 +359,19 @@
       #whenSignedOut, #whenSignedIn {
         margin: 10px;
       }
+
+      .card {
+        background-color: #2c2f33;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      #cover {position: fixed; height: 100%; width: 100%; top:0; left: 0; text-align: center; background: #232629; z-index:9999; color: white;}
+
     </style>
   </head>
   <body>
+    <div id="cover"><h3 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">M<span style="color: #bdf29d">@</span>tcha</h3></div>
     
     <div id = "yes">
       <div class="area" >
@@ -466,8 +476,47 @@
         <div class="centered" style="padding-top: 2%; position: absolute; top: 0; left: 0; right: 0;">
           <a href="#mid2"><button type="button" class="btn down-button" id="toMid2a"><i class="fas fa-angle-up"></i></button></a>
         </div>
-        <div id="endContent" style="position:absolute; top: 25%; margin:auto; text-align: left;">
-
+        <div id="endContent" style="position:absolute; top: 15%; margin:auto; text-align: center;">
+          <h2>Meet our team.</h2>
+          <div class = "row" style="margin-top: 5%; margin-bottom: 5%">
+            <div class="col">
+              <div class="card" style="width:100%">
+                <img class="card-img-top" src="opo/woman.png" alt="Card image" style="width:100%; height: auto;">
+                <div class="card-body">
+                  <h4 class="card-title">Thing 1</h4>
+                  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" style="width:100%">
+                <img class="card-img-top" src="opo/woman.png" alt="Card image" style="width:100%; height: auto;">
+                <div class="card-body">
+                  <h4 class="card-title">Thing 2</h4>
+                  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" style="width:100%">
+                <img class="card-img-top" src="opo/woman.png" alt="Card image" style="width:100%; height: auto;">
+                <div class="card-body">
+                  <h4 class="card-title">Thing 3</h4>
+                  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card" style="width:100%">
+                <img class="card-img-top" src="opo/woman.png" alt="Card image" style="width:100%; height: auto;">
+                <div class="card-body">
+                  <h4 class="card-title">Thing 4</h4>
+                  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2>And that's how Matcha stands out. Built by students, for students.</h2>
         </div>
       </div>
     </div>
@@ -477,7 +526,7 @@
       <div class="container">
         <a id="toTippyTop" href="#yes">
           <div id = "logo">
-            <h3 id="logoHeading">m<span style="color: #bdf29d">@</span>tcha</h3>
+            <h3 id="logoHeading">M<span style="color: #bdf29d">@</span>tcha</h3>
           </div>
         </a>
         <div id="buttons">
@@ -493,9 +542,20 @@
         </div>
       </div>
     </div>
-    <a href = "schedule.html"><button style="position:absolute; top: 0;">lollolo</button></a> <!--TODO link to login instead if not signed in-->
+  
+    <!--<a href = "schedule.html"><button style="position:absolute; top: 0;">lollolo</button></a>--> <!--TODO link to login instead if not signed in-->
 
     <!-- Triple Section -->
+    <script>
+      $(window).on('load', function() {
+        setTimeout(function(){
+          $('#cover').fadeOut(1000);
+        }, 1000);
+      });
+
+      
+    </script>
+    
 
     <script>
       $("#toTippyTop").click(function() {

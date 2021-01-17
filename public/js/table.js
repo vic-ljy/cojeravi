@@ -16,9 +16,11 @@ var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OC
 var m = months[month];
 var date = d.getDate();
 var n = d.getDay();
-var days = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT', 'SUN', 'MON', 'TUES', 'WED'];
+var days = ['SUN', 'MON', 'TUES', 'WED', 'THUR', 'FRI', 'SAT', 'SUN', 'MON', 'TUES', 'WED'];
+var year = d.getFullYear() - 2000; //should i even define it here
 
 var userID;
+
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         userID = user.uid;
@@ -29,13 +31,27 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 })
 
+function reformatTime(time) {
+  console.log('memberList: '+memberList); //[[m1ID, m1COL],[m2ID, m2COL]]
+  console.log('time: '+time); //hhddmmyy
+
+  var hh = parseInt(time[0] + time[1]);
+  var dd = parseInt(time[2] + time[3]);
+  var mm = parseInt(time[4] + time[5]);
+  var yy = parseInt(time[6] + time[7]);
+
+  //change this for future
+  if ((yy == year) && (mm == month) && (dd >= date && dd <= date + 5)) {
+
+  }
+}
 
 for(var i = 0; i < 19; i++){
-    var row = document.createElement("tr");
-    row.id = ("rowId" + i.toString());
+  var row = document.createElement("tr");
+  row.id = ("rowId" + i.toString());
 
   for(var j = 0; j < 6; j++){
-    // time slots
+  // time slots
     if(j == 0 && i > 1 ){
         var timing = document.createElement("td");
         var timingText = document.createTextNode((i+5) + ":00 - " + (i+5) + ":50");
@@ -75,48 +91,61 @@ for(var i = 0; i < 19; i++){
         } else if(j!=0){
         //All other columns (except time column)
             var cell = document.createElement("td");
-
             cell.className = "slotCell";
 
             if(j == 1){
               cell.className = "slotCell slotToday";
               cell.style.borderLeft = "6px solid #bdf29d";
-              if(i == 18){
-                cell.className = "slotCell slotToday slotLast";
+              if(i == 18){ 
+                cell.className = "slotLast slotToday slotCell";
               }
             }
-
             var hour = String(i+5);
-             
-            if (hour.length == 1) hour = "0" + hour; // I dunno if this works it should tho
-        
-            cell.id = ("day" + j + "hr" + hour); //i = 1 is at 7am; eg. day1hr12
 
-            //TODO format 7am to 07
+            if (hour.length == 1) hour = "0" + hour; 
+            cell.id = ("day" + j.toString() + "hr" + hour); //i = 1 is at 7am; eg. day1hr12
             
+            //User icons
+            var user1 = document.createElement("div");
+            user1.id = "m1b";
 
+            var user2 = document.createElement("div");
+            user2.id = "m2b";
+
+              //Add user button
             var addUser = document.createElement("button");
-            addUser.className = "addUserBtn";
-            addUser.id = cell.id;
+            //addUser.className = "addUserBtn";
 
-            addUser.onclick = function(){
+            addUser.id = 'b' + cell.id;
+
+            addUser.onclick = function() {
               joinSession(this.id);
-              alert(this.id);
-            }
+              if (user1.className == "noneUser") {
+                var m1 = 'm1' + this.id;
+                document.getElementById(m1).style.opacity = "1";
+                this.style.zIndex = "-1";
+              }
+            };
+            cell.appendChild(user1);
+            cell.appendChild(user2);
             
+            cell.appendChild(addUser);
+            row.appendChild(cell);
+        } else {
+            //empty cells top left
+            var cell = document.createElement("td");
             cell.className="slotEmpty";
 
             if (i == 1) {
               cell.className = "slotEmpty beforeTime";
-            } 
+            }
             row.appendChild(cell);
         }
+      }
     }
-
+  if(i == 0 || i == 1){
+    schedHead.appendChild(row);
+  } else {
+    schedBody.appendChild(row);
   }
-    if(i == 0 || i == 1){
-      schedHead.appendChild(row);
-    } else {
-      schedBody.appendChild(row);
-    }
 }

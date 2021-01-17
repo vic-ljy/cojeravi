@@ -15,6 +15,10 @@ function signUpEmailPass() {
     let email = document.getElementById('signUpEmail').value;
     let password = document.getElementById('signUpPassword').value;
     //alert('checkpoint 1');
+    let n = userName.charCodeAt(0);
+    if (!((n>=65&&n<=90)||(n>=97&&n<=122))) {
+        
+    }
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((user) => {
             //alert('checkpoint 1.5');
@@ -32,7 +36,8 @@ function signUpEmailPass() {
         .catch((error) => {
             //var errorCode = error.code;
             var errorMessage = error.message;
-            alert("There was an error. :( Message: "+ errorMessage);
+            document.getElementById('signUpError').innerHTML = "Error: "+ errorMessage;
+            document.getElementById('signUpError').removeAttribute('hidden');
         });
 }
 
@@ -54,30 +59,28 @@ function signUpGoogle() {
             });
             //alert('checkpoint 3');
         window.location.href = "groups.html";
-        }).catch((error) => {
+        })
+        .catch((error) => {
             //var errorCode = error.code;
             var errorMessage = error.message;
-            // The email of the user's account used.
-            //var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            //var credential = error.credential;
-            alert("There was an error. :( Message: "+ errorMessage);
+            document.getElementById('signUpError').innerHTML = "Error: "+ errorMessage;
+            document.getElementById('signUpError').removeAttribute('hidden');
         });
 }
 
 function logInEmailPass() {
-    alert('checkpoint 0');
+    //alert('checkpoint 0');
     let email = document.getElementById('logInEmail').value;
     let password = document.getElementById('logInPassword').value;
-    alert("checkpoint 1");
+    //alert("checkpoint 1");
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((user) => {
             //let profilesRef = rootRef.child("profiles");
             let currentUser = firebase.auth().currentUser;
             let userID = currentUser.uid;
-            alert('checkpoint 2');
+            //alert('checkpoint 2');
             database.ref('profiles/'+userID+'/groupID').once('value').then(function(snapshot) {
-                alert('checkpoint 3');
+                //alert('checkpoint 3');
                 if (snapshot.val()== "") {
                     window.location.href = "groups.html";
                 } else {
@@ -88,7 +91,8 @@ function logInEmailPass() {
         .catch((error) => {
             //var errorCode = error.code;
             var errorMessage = error.message;
-            alert("There was an error. :( Message: "+ errorMessage);
+            document.getElementById('logInError').innerHTML = "Error: "+ errorMessage;
+            document.getElementById('logInError').removeAttribute('hidden');
         });
 }
 
@@ -127,18 +131,16 @@ function logInGoogle() {
                     }
                 });
             });
-        }).catch((error) => {
+        })
+        .catch((error) => {
             //var errorCode = error.code;
             var errorMessage = error.message;
-            // The email of the user's account used.
-            //var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            //var credential = error.credential;
-            alert("There was an error. :( Message: "+ errorMessage);
+            document.getElementById('logInError').innerHTML = "Error: "+ errorMessage;
+            document.getElementById('logInError').removeAttribute('hidden');
         });
 }
 
 function signOut() {
     firebase.auth().signOut();
-    alert("signed out!");
+    //alert("signed out!");
 }

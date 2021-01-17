@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
-* {
-  background-color: #232629;
-  margin-top: 30px;
-}
-
 #schedule{
   color: white;
   border-radius: 50px;
@@ -16,11 +11,79 @@
   padding-bottom: 50px;
 }
 
+/* User Icons */
 .schedUnpaired {
-  background-color: yellow;
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
 }
 .schedPaired {
-  background-color: green;
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-bottom: 10px;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.schedUnpairedUser {
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  border: 2px solid white;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.noneUser {
+  border: 2px solid white;
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  position: absolute;
+  margin-left: 64px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  opacity: 0;
+}
+
+.schedPairedUser {
+  border: 2px solid white;
+  height: 56px;
+  width: 56px;
+  font-family: Noto Sans, sans-serif;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-bottom: 10px;
+  font-size: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+  opacity: 0.5;
 }
 
 /* titles */
@@ -38,8 +101,9 @@
 
 .week {
   text-align: center;
-  height: 60px;
-  font-size: 40px;
+  height: 80px;
+  font-size: 30px;
+  padding-top:30px;
   border-bottom: none;
   vertical-align: bottom;
   background-color: #2c2f33;
@@ -100,8 +164,12 @@
 
 /* Hover */
 .slotCell:hover, .slotToday:hover {
-  transform: scale(1.1, 1.1);
+  transform: scale(1.03, 1.03);
   box-shadow: 2px 2px 25px 5px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0,0,0,0.2);
+}
+/*case 0*/
+.slotCell:hover .addUserBtn {
+  opacity: 1;
 }
 
 
@@ -120,16 +188,20 @@
   font-size: 35px;
   vertical-align: middle;
   border-radius: 50%;
-
+  margin-bottom: 20px;
+  margin-top: -14px; /*to fix*/
 
   overflow: hidden;
   position: relative;
   display: inline-block;
   transition: all 0.25s ease;
+  opacity: 0;
 }
 .addUserBtn::before {
   content: '+';
   color: #bdf29d;
+  transition-duration: 0.5s;
+  box-shadow: inset 0 0 0 2px #bdf29d;
 }
 
 .addUserBtn::after {
@@ -145,12 +217,12 @@
     transition: all 0.25s ease;
     border-radius: 50%;
 }
-.addUserBtn::before {
-  transition-duration: 0.5s;
-  box-shadow: inset 0 0 0 2px #bdf29d;
-}
 
 .addUserBtn:hover::before{
     box-shadow: inset 0 0 0 60px #bdf29d;
     color: black;
+}
+
+.addUserBtn:active, .addUserBtn:focus {
+  border: none;
 }
