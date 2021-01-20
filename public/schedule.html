@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Schedule</title>
+        <title>Matcha | Schedule</title>
         <link rel="icon" href="opo/logo.svg">
         <!-- Bootstrap 3 -->
         <!-- Latest compiled and minified CSS -->
@@ -147,7 +147,10 @@
         </style>
     </head>
     <body style="min-width: 1300px;">
-      
+      <div id="cover">
+        <!--<h3 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">M<span style="color: #bdf29d">@</span>tcha</h3>-->
+        <img src="opo/logo.png" width="40px" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      </div>
       <!--Table with times-->
       <center>
         <div class="container-fluid">
@@ -202,7 +205,15 @@
       
       
       <!-- SCRIPTS -->
-
+      <script>
+        $(window).on('load', function() {
+          setTimeout(function(){
+            $('#cover').fadeOut(1000);
+          }, 3500);
+        });
+  
+        
+      </script>
    
     <script>
         var database = firebase.database();
